@@ -1,24 +1,35 @@
-set :application, 'app_name'
-set :deploy_user, 'deploy'
+set :application, 'my_devise'
+set :deploy_user, 'zumkum'
 
 # setup repo details
 set :scm, :git
-set :repo_url, 'git@github.com:username/repo.git'
+set :repo_url, 'https://github.com/schwinnn/my_devise.git'
 
+
+set :log_level, :info
 # setup rvm.
-set :rbenv_type, :system
-set :rbenv_ruby, '2.1.1'
-set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
-set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rvm1_ruby_version, "2.1.1"
+# set :rvm_type, :auto                     # Defaults to: :auto
+# set :rvm_ruby_version, '2.1.1p76'      # Defaults to: 'default'
+# set :rvm_custom_path, '~/.myveryownrvm'  # only needed if not detected
+
+# set :rbenv_type, :system
+# set :rbenv_ruby, '2.1.1'
+# set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+# set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+
+SSHKit.config.command_map[:rake]  = "bundle exec rake" 
+SSHKit.config.command_map[:rails] = "bundle exec rails"
 
 # how many old releases do we want to keep, not much
 set :keep_releases, 5
 
 # files we want symlinking to specific entries in shared
-set :linked_files, %w{config/database.yml}
+# set :linked_files, %w{config/database.yml}
 
 # dirs we want symlinking to shared
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
 
 # what specs should be run before deployment is allowed to
 # continue, see lib/capistrano/tasks/run_tests.cap
@@ -29,7 +40,6 @@ set :tests, []
 # for details of operations
 set(:config_files, %w(
   nginx.conf
-  database.example.yml
   log_rotation
   monit
   unicorn.rb
@@ -77,6 +87,8 @@ namespace :deploy do
   before :deploy, "deploy:check_revision"
   # only allow a deploy with passing tests to deployed
   before :deploy, "deploy:run_tests"
+  before :deploy, 'rvm1:install:rvm'
+  before :deploy, 'rvm1:install:ruby'
   # compile assets locally then rsync
   after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
   after :finishing, 'deploy:cleanup'

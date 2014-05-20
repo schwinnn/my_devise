@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
+gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -47,8 +47,10 @@ gem 'capistrano-rails', '~> 1.1.0'
 # integrate bundler with capistrano
 gem 'capistrano-bundler'
 
+gem 'rvm1-capistrano3', require: false
+#gem 'capistrano-rvm'
 # if you are using RBENV
-gem 'capistrano-rbenv', "~> 2.0" 
+#gem 'capistrano-rbenv', "~> 2.0" 
 
 # Use the Unicorn app server
 gem 'unicorn'
