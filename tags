@@ -1,0 +1,20 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ActiveSupport	test/test_helper.rb	/^class ActiveSupport::TestCase$/;"	c
+Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:MyDevise
+ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
+ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
+DeviseCreateUsers	db/migrate/20140520013231_devise_create_users.rb	/^class DeviseCreateUsers < ActiveRecord::Migration$/;"	c
+HomeController	app/controllers/home_controller.rb	/^class HomeController < ApplicationController$/;"	c
+HomeControllerTest	test/controllers/home_controller_test.rb	/^class HomeControllerTest < ActionController::TestCase$/;"	c
+HomeHelper	app/helpers/home_helper.rb	/^module HomeHelper$/;"	m
+HomeHelperTest	test/helpers/home_helper_test.rb	/^class HomeHelperTest < ActionView::TestCase$/;"	c
+MyDevise	config/application.rb	/^module MyDevise$/;"	m
+User	app/models/user.rb	/^class User < ActiveRecord::Base$/;"	c
+UserTest	test/models/user_test.rb	/^class UserTest < ActiveSupport::TestCase$/;"	c
+change	db/migrate/20140520013231_devise_create_users.rb	/^  def change$/;"	f	class:DeviseCreateUsers
+index	app/controllers/home_controller.rb	/^  def index$/;"	f	class:HomeController
