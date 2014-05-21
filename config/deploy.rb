@@ -86,16 +86,19 @@ namespace :deploy do
   # make sure we're deploying what we think we're deploying
   before :deploy, "deploy:check_revision"
   # only allow a deploy with passing tests to deployed
-  before :deploy, "deploy:run_tests"
-  before :deploy, 'rvm1:install:rvm'
-  before :deploy, 'rvm1:install:ruby'
+  #before :deploy, "deploy:run_tests"
+
   # compile assets locally then rsync
-  after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
+  #after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
+  #after 'deploy:symlink:shared', 'deploy:assets'
   after :finishing, 'deploy:cleanup'
 
   # remove the default nginx configuration as it will tend
   # to conflict with our configs.
   before 'deploy:setup_config', 'nginx:remove_default_vhost'
+
+  before 'deploy:setup_config', 'rvm1:install:rvm'
+  before 'deploy:setup_config', 'rvm1:install:ruby'
 
   # reload nginx to it will pick up any modified vhosts from
   # setup_config
